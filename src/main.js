@@ -364,9 +364,9 @@ const render = (container, markup, place) => {
 
 const pageMain = document.querySelector(`main`);
 const menuContainer = pageMain.querySelector(`.main__control`);
-// const boardContainer = pageMain.getElementsByClassName(`board container`);
-// const boardContainer = pageMain.querySelector(`.board`);
-// console.log(boardContainer);
+let board = document.createElement(`section`);
+board.classList.add(`board`, `container`);
+pageMain.appendChild(board);
 
 const menu = makeMenu();
 const filters = makeFilters();
@@ -375,13 +375,16 @@ const task = makeTask();
 const form = makeForm();
 const button = makeLoadButton();
 
-render(menuContainer, menu, `beforeEnd`);
-render(pageMain, filters, `beforeEnd`);
-render(pageMain, sort, `beforeEnd`);
-render(pageMain, form, `beforeEnd`);
+render(menuContainer, menu, `beforeend`);
+render(menuContainer, filters, `afterend`);
 
+let tasks = document.createElement(`div`);
+tasks.classList.add(`board__tasks`);
+board.appendChild(tasks);
+
+render(tasks, form, `beforeend`);
+render(board, sort, `afterbegin`);
 for (let i = 0; i < TASK_COUNT; i += 1) {
-  render(pageMain, task, `beforeEnd`);
+  render(tasks, task, `beforeend`);
 }
-
-render(pageMain, button, `beforeEnd`);
+render(board, button, `beforeend`);
