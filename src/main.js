@@ -32,7 +32,7 @@ const makeMenu = () => {
             >STATISTICS</label
           >
         </section>`
-    );
+  );
 };
 const makeFilters = () => {
   return (
@@ -95,16 +95,16 @@ const makeFilters = () => {
           >Archive <span class="filter__archive-count">115</span></label
         >
       </section>`
-    );
+  );
 };
 const makeSort = () => {
-  return(
+  return (
     `<div class="board__filter-list">
           <a href="#" class="board__filter" data-sort-type="default">SORT BY DEFAULT</a>
           <a href="#" class="board__filter" data-sort-type="date-up">SORT BY DATE up</a>
           <a href="#" class="board__filter" data-sort-type="date-down">SORT BY DATE down</a>
         </div>`
-    )
+  );
 };
 const makeForm = () => {
   return (
@@ -304,7 +304,7 @@ const makeForm = () => {
               </div>
             </form>
           </article>`
-    )
+  );
 };
 const makeTask = () => {
   return (
@@ -351,23 +351,22 @@ const makeTask = () => {
               </div>
             </div>
           </article>`
-  )
+  );
 };
 const makeLoadButton = () => {
-  (
+  return (
     `<button class="load-more" type="button">load more</button>`
-    )
+  );
 };
 const render = (container, markup, place) => {
   container.insertAdjacentHTML(place, markup);
 };
 
-const pageMain = document.querySelector('main');
-const menuContainer = pageMain.querySelector('.main__control');
-//const boardContainer = pageMain.querySelector('.board');
-//const boardContainer = pageMain.getElementsByClassName('board container');
-//const boardContainer = pageMain.querySelector(`.board`);
-//console.log(boardContainer);
+const pageMain = document.querySelector(`main`);
+const menuContainer = pageMain.querySelector(`.main__control`);
+// const boardContainer = pageMain.getElementsByClassName(`board container`);
+const boardContainer = pageMain.querySelector(`.board`);
+// console.log(boardContainer);
 
 const menu = makeMenu();
 const filters = makeFilters();
@@ -376,13 +375,13 @@ const task = makeTask();
 const form = makeForm();
 const button = makeLoadButton();
 
-render(menuContainer, menu, 'beforeEnd');
-render(pageMain, filters, 'beforeEnd');
-render(pageMain, sort, 'beforeEnd');
-render(pageMain, form, 'beforeEnd');
+render(menuContainer, menu, `beforeEnd`);
+render(pageMain, filters, `beforeEnd`);
+render(pageMain, sort, `beforeEnd`);
+render(pageMain, form, `beforeEnd`);
 
 for (let i = 0; i < TASK_COUNT; i += 1) {
-  render(pageMain, task, 'beforeEnd');
-};
+  render(pageMain, task, `beforeEnd`);
+}
 
-render(pageMain, button, 'beforeEnd');
+render(pageMain, button, `beforeEnd`);
