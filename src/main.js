@@ -365,7 +365,7 @@ const render = (container, markup, place) => {
 const pageMain = document.querySelector(`main`);
 const menuContainer = pageMain.querySelector(`.main__control`);
 // const boardContainer = pageMain.getElementsByClassName(`board container`);
-const boardContainer = pageMain.querySelector(`.board`);
+// const boardContainer = pageMain.querySelector(`.board`);
 // console.log(boardContainer);
 
 const menu = makeMenu();
