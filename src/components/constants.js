@@ -1,4 +1,6 @@
 export const TASK_COUNT = 3;
+export const TASKS_COUNT_ON_START = 8;
+export const TASKS_COUNT_BY_BUTTON = 8;
 export const BUTTON_MORE = `load more`;
 export const SORT_DEF = `SORT BY DEFAULT`;
 export const SORT_DATE_D = `SORT BY DATE down`;
@@ -7,7 +9,7 @@ export const MENU_ADD = `+ ADD NEW TASK`;
 export const MENU_T = `TASKS`;
 export const MENU_S = `STATISTICS`;
 export const COLORS = [`black`, `yellow`, `blue`, `green`, `pink`];
-export const DAYS = [`mo`, `tu`, `we`, `th`, `fr`, `sa`, `su`];
+export const WEEK_DAYS = [`mo`, `tu`, `we`, `th`, `fr`, `sa`, `su`];
 export const MONTH_NAMES = [
   `January`,
   `February`,
