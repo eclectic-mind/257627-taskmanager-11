@@ -22,5 +22,4 @@ export const MONTH_NAMES = [
   `November`,
   `December`,
 ];
-export const FILTER_NAMES = [`all`, `overdue`, `today`, `favorites`, `repeating`, `archive`];
 export const DESCR_ITEMS = [`Изучить теорию`, `Сделать домашку`, `Пройти интенсив на соточку`];
