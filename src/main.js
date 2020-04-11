@@ -1,7 +1,7 @@
 import {TASK_COUNT} from './components/constants.js';
 import {render} from './components/render.js';
 import {makeLoadButton} from './components/button.js';
-import {makeTask} from './components/task.js';
+import {makeTask, makeBoard} from './components/task.js';
 import {makeForm} from './components/form.js';
 import {makeSort} from './components/sort.js';
 import {makeFilters} from './components/filters.js';
@@ -9,27 +9,26 @@ import {makeMenu} from './components/menu.js';
 
 const pageMain = document.querySelector(`main`);
 const menuContainer = pageMain.querySelector(`.main__control`);
-let board = document.createElement(`section`);
-board.classList.add(`board`, `container`);
-pageMain.appendChild(board);
 
 const menu = makeMenu();
 const filters = makeFilters();
 const sort = makeSort();
 const task = makeTask();
+const board = makeBoard();
 const form = makeForm();
 const button = makeLoadButton();
 
 render(menuContainer, menu, `beforeend`);
 render(menuContainer, filters, `afterend`);
+render(pageMain, board, `beforeend`);
 
-let tasks = document.createElement(`div`);
-tasks.classList.add(`board__tasks`);
-board.appendChild(tasks);
-
-render(tasks, form, `beforeend`);
-render(board, sort, `afterbegin`);
+const boardContainer = document.querySelector(`.board`);
+render(boardContainer, sort, `afterbegin`);
+let boardTasks = document.querySelector(`.board__tasks`);
+console.log(boardTasks);
 for (let i = 0; i < TASK_COUNT; i += 1) {
-  render(tasks, task, `beforeend`);
+  render(boardTasks, task, `beforeend`);
 }
-render(board, button, `beforeend`);
+render(boardTasks, form, `afterbegin`);
+
+render(boardContainer, button, `beforeend`);
