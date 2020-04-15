@@ -8,7 +8,7 @@ import {makeMenu} from './components/menu.js';
 import {makeFiltersMarkup} from './components/filters.js';
 import {generateFilters, countTasksByType} from './mock/filters.js';
 
-import {generateTask, generateTasks, DefaultRepeatingDays} from "./mock/task.js";
+import {generateTask, generateTasks} from "./mock/task.js";
 import {makeTask, makeBoard} from "./components/task.js";
 
 const pageMain = document.querySelector(`main`);
@@ -26,7 +26,7 @@ const boardContainer = document.querySelector(`.board`);
 render(boardContainer, sort, `afterbegin`);
 const boardTasks = document.querySelector(`.board__tasks`);
 
-const tasksData = generateTask();
+// const tasksData = generateTask();
 // const tasks = generateTasks(TASKS_COUNT_ON_START - 1);
 const tasks = generateTasks(TASK_COUNT - 1);
 render(boardTasks, makeTask(tasks[0]), `afterbegin`);
@@ -39,7 +39,7 @@ const rep = 0;
 const fav = countTasksByType(tasks, `isFavourite`);
 const arch = countTasksByType(tasks, `isArchive`);
 const filterCounts = [all, over, today, fav, rep, arch];
-console.log(filterCounts);
+// console.log(filterCounts);
 
 const filters = generateFilters(tasks, filterCounts);
 const filtersMarkup = makeFiltersMarkup(filters);
@@ -54,19 +54,19 @@ if (tasks.length >= TASKS_COUNT_ON_START) {
 }
 
 const buttonMore = document.querySelector(`.load-more`);
-if (buttonMore) {
+  if (buttonMore) {
 
-buttonMore.addEventListener(`click`, () => {
+    buttonMore.addEventListener(`click`, () => {
 
-    const prevTasksCount = showingTasksCount;
-    showingTasksCount = showingTasksCount + TASKS_COUNT_BY_BUTTON;
-    tasks.slice(prevTasksCount, showingTasksCount)
-      .forEach((task) => render(boardTasks, makeTask(task), `beforeend`));
+      const prevTasksCount = showingTasksCount;
+      showingTasksCount = showingTasksCount + TASKS_COUNT_BY_BUTTON;
+      tasks.slice(prevTasksCount, showingTasksCount)
+        .forEach((task) => render(boardTasks, makeTask(task), `beforeend`));
 
-    if (showingTasksCount >= tasks.length) {
-      buttonMore.remove();
-    }
+      if (showingTasksCount >= tasks.length) {
+        buttonMore.remove();
+      }
 
-  });
+    });
 
 }

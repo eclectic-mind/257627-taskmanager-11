@@ -1,4 +1,4 @@
-import {BUTTON_MORE, SORT_DEF, SORT_DATE_D, SORT_DATE_U} from './constants.js';
+import {SORT_DEF, SORT_DATE_D, SORT_DATE_U} from './constants.js';
 
 export const makeSort = () => {
   return (

@@ -22,4 +22,4 @@ export const makeFiltersMarkup = (filters) => {
     ${filterMarkup}
     </section>`
   );
-}
+};

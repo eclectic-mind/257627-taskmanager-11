@@ -7,7 +7,7 @@ export const makeBoard = () => {
     <div class="board__tasks"></div>
     </section>`
   );
-}
+};
 
 export const makeTask = (task) => {
   const {description, dueDate, color, repeatingDays, isArchive, isFavorite} = task;
@@ -65,4 +65,4 @@ export const makeTask = (task) => {
     </div>
   </article>`
   );
-}
+};
