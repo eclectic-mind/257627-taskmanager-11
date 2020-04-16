@@ -26,28 +26,16 @@ const boardContainer = document.querySelector(`.board`);
 render(boardContainer, sort, `afterbegin`);
 const boardTasks = document.querySelector(`.board__tasks`);
 
-// const tasksData = generateTask();
-// const tasks = generateTasks(TASKS_COUNT_ON_START - 1);
 const tasks = generateTasks(TASK_COUNT - 1);
 render(boardTasks, makeTask(tasks[0]), `afterbegin`);
 render(boardTasks, form, `afterbegin`);
 
-const all = tasks.length;
-const over = 0;
-const today = 0;
-const rep = 0;
-const fav = countTasksByType(tasks, `isFavourite`);
-const arch = countTasksByType(tasks, `isArchive`);
-const filterCounts = [all, over, today, fav, rep, arch];
-// console.log(filterCounts);
-
-const filters = generateFilters(tasks, filterCounts);
+const filters = generateFilters(tasks);
 const filtersMarkup = makeFiltersMarkup(filters);
 render(menuContainer, filtersMarkup, `afterend`);
 
 let showingTasksCount = TASKS_COUNT_ON_START;
-tasks.slice(1, showingTasksCount)
-  .forEach((task) => render(boardTasks, makeTask(task), `beforeend`));
+tasks.slice(1, showingTasksCount).forEach((task) => render(boardTasks, makeTask(task), `beforeend`));
 
 if (tasks.length >= TASKS_COUNT_ON_START) {
   render(boardContainer, button, `beforeend`);
@@ -68,5 +56,4 @@ const buttonMore = document.querySelector(`.load-more`);
       }
 
     });
-
-}
+};
