@@ -1,4 +1,5 @@
-export const TASK_COUNT = 3;
+// export const TASK_COUNT = 3;
+export const TASK_COUNT = 20;
 export const TASKS_COUNT_ON_START = 8;
 export const TASKS_COUNT_BY_BUTTON = 8;
 export const BUTTON_MORE = `load more`;

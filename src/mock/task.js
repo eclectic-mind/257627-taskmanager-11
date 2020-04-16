@@ -1,5 +1,5 @@
-import {COLORS, DESCR_ITEMS, WEEK_DAYS} from '../components/constants.js';
-import {getRandomNumber, getRandomArrayItem, getRandomDate, generateRepeatingDays} from "../components/utils.js";
+import {COLORS, DESCR_ITEMS} from '../components/constants.js';
+import {getRandomArrayItem, getRandomDate, generateRepeatingDays} from "../components/utils.js";
 
 export const DefaultRepeatingDays = {
   "mo": false,
@@ -22,10 +22,10 @@ export const generateTask = (days) => {
     isArchive: Math.random() > 0.5,
     isFavorite: Math.random() > 0.5,
   };
-}
+};
 
 export const generateTasks = (count) => {
   return new Array(count)
     .fill(``)
     .map(generateTask);
-}
+};

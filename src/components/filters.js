@@ -16,10 +16,10 @@ const makeFilter = (filter, isChecked) => {
 };
 
 export const makeFiltersMarkup = (filters) => {
-  const filterMarkup = filters.map((it, i) => makeFilter(it, i === 0)).join(`\n`);
+  const filterMarkup = filters.map((item, i) => makeFilter(item, i === 0)).join(`\n`);
   return (
     `<section class="main__filter filter container">
     ${filterMarkup}
     </section>`
   );
-}
+};
