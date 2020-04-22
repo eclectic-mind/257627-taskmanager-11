@@ -45,4 +45,4 @@ export default class Menu {
   removeElement() {
     this._element = null;
   }
-};
+}

@@ -24,4 +24,4 @@ export default class NoTasks {
   removeElement() {
     this._element = null;
   }
-};
+}

@@ -1,12 +1,10 @@
 import {createElement} from './utils.js';
 
-
 export const makeBoard = () => {
   return (
     `<section class="board container"></section>`
   );
 };
-
 
 export default class Board {
   constructor() {
@@ -24,4 +22,4 @@ export default class Board {
   removeElement() {
     this._element = null;
   }
-};
+}

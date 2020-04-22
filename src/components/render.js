@@ -1,5 +1,3 @@
-import {createElement} from './utils.js';
-
 export const RenderPosition = {
   AFTERBEGIN: `afterbegin`,
   BEFOREEND: `beforeend`
@@ -14,4 +12,4 @@ export const render = (container, element, place) => {
       container.append(element);
       break;
   }
-};
+}

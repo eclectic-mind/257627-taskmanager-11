@@ -22,4 +22,4 @@ export default class Tasks {
   removeElement() {
     this._element = null;
   }
-};
+}

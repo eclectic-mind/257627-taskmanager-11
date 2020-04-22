@@ -3,7 +3,7 @@ import {createElement} from './utils.js';
 
 const makeLoadButton = () => {
   return (
-    `<button class="load-more" type="button">load more</button>`
+    `<button class="load-more" type="button">${BUTTON_MORE}</button>`
   );
 };
 
@@ -23,4 +23,4 @@ export default class Button {
   removeElement() {
     this._element = null;
   }
-};
+}

@@ -135,4 +135,4 @@ export default class Form {
   removeElement() {
     this._element = null;
   }
-};
+}
