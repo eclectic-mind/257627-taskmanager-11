@@ -1,12 +1,12 @@
-import {SORT_DEF, SORT_DATE_D, SORT_DATE_U} from './constants.js';
-import {createElement} from './utils.js';
+import {SORT_PARAMS} from '../constants.js';
+import {createElement} from '../utils.js';
 
-export const makeSort = () => {
+const createSortTemplate = () => {
   return (
     `<div class="board__filter-list">
-          <a href="#" class="board__filter" data-sort-type="default">${SORT_DEF}</a>
-          <a href="#" class="board__filter" data-sort-type="date-up">${SORT_DATE_U}</a>
-          <a href="#" class="board__filter" data-sort-type="date-down">${SORT_DATE_D}</a>
+          <a href="#" class="board__filter" data-sort-type="default">${SORT_PARAMS[0]}</a>
+          <a href="#" class="board__filter" data-sort-type="date-up">${SORT_PARAMS[1]}</a>
+          <a href="#" class="board__filter" data-sort-type="date-down">${SORT_PARAMS[2]}</a>
         </div>`
   );
 };
@@ -16,7 +16,7 @@ export default class Sort {
     this._element = null;
   }
   getTemplate() {
-    return makeSort();
+    return createSortTemplate();
   }
   getElement() {
     if (!this._element) {

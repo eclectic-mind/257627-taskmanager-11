@@ -1,5 +1,5 @@
-import {COLORS, DESCR_ITEMS} from '../components/constants.js';
-import {getRandomArrayItem, getRandomDate, generateRepeatingDays} from "../components/utils.js";
+import {COLORS, DESCR_ITEMS} from '../constants.js';
+import {getRandomArrayItem, getRandomDate, generateRepeatingDays} from "../utils.js";
 
 export const DefaultRepeatingDays = {
   "mo": false,

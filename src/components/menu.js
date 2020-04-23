@@ -1,7 +1,7 @@
-import {MENU_ADD, MENU_T, MENU_S} from './constants.js';
-import {createElement} from './utils.js';
+import {MENU_ADD, MENU_T, MENU_S} from '../constants.js';
+import {createElement} from '../utils.js';
 
-export const makeMenu = () => {
+const createMenuTepmplate = () => {
   return (
     `<section class="control__btn-wrap">
           <input
@@ -34,7 +34,7 @@ export default class Menu {
     this._element = null;
   }
   getTemplate() {
-    return makeMenu();
+    return createMenuTepmplate();
   }
   getElement() {
     if (!this._element) {

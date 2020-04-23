@@ -1,5 +1,5 @@
-import {COLORS, WEEK_DAYS, MONTH_NAMES} from './constants.js';
-import {createElement, formatTime} from './utils.js';
+import {COLORS, WEEK_DAYS, MONTH_NAMES} from '../constants.js';
+import {createElement, formatTime} from '../utils.js';
 
 const createColorsMarkup = (colors, currentColor) => {
   return colors
@@ -44,7 +44,7 @@ const createRepeatingDaysMarkup = (days, repeatingDays) => {
     .join(`\n`);
 };
 
-export const makeForm = (task) => {
+const createFormTemplate = (task) => {
   const {description, dueDate, color, repeatingDays} = task;
   const isExpired = dueDate instanceof Date && dueDate < Date.now();
   const isDateShowing = !!dueDate;
@@ -124,7 +124,7 @@ export default class Form {
     this._element = null;
   }
   getTemplate() {
-    return makeForm(this._task);
+    return createFormTemplate(this._task);
   }
   getElement() {
     if (!this._element) {

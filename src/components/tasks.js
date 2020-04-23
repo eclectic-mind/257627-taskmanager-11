@@ -1,6 +1,6 @@
-import {createElement} from "./utils.js";
+import {createElement} from "../utils.js";
 
-const makeTasksTemplate = () => {
+const createTasksTemplate = () => {
   return (
     `<div class="board__tasks"></div>`
   );
@@ -11,7 +11,7 @@ export default class Tasks {
     this._element = null;
   }
   getTemplate() {
-    return makeTasksTemplate();
+    return createTasksTemplate();
   }
   getElement() {
     if (!this._element) {

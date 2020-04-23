@@ -1,6 +1,5 @@
-import {TASK_COUNT, TASKS_COUNT_ON_START, TASKS_COUNT_BY_BUTTON} from './components/constants.js';
-import {render, RenderPosition} from './components/render.js';
-import {formatTime, createElement} from './components/utils.js';
+import {TASK_COUNT, TASKS_COUNT_ON_START, TASKS_COUNT_BY_BUTTON} from './constants.js';
+import {formatTime, createElement, render, RenderPosition} from './utils.js';
 import {generateFilters, countTasksByType} from './mock/filters.js';
 import {generateTask, generateTasks} from "./mock/task.js";
 
