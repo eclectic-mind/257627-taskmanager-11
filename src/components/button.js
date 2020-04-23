@@ -1,7 +1,7 @@
-import {BUTTON_MORE} from './constants.js';
-import {createElement} from './utils.js';
+import {BUTTON_MORE} from '../constants.js';
+import {createElement} from '../utils.js';
 
-const makeLoadButton = () => {
+const createLoadButton = () => {
   return (
     `<button class="load-more" type="button">${BUTTON_MORE}</button>`
   );
@@ -12,7 +12,7 @@ export default class Button {
     this._element = null;
   }
   getTemplate() {
-    return makeLoadButton();
+    return createLoadButton();
   }
   getElement() {
     if (!this._element) {
