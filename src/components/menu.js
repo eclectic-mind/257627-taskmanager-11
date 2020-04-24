@@ -1,7 +1,8 @@
 import {MENU_ADD, MENU_T, MENU_S} from '../constants.js';
-import {createElement} from '../utils.js';
+// import {createElement} from '../utils.js';
+import AbstractComponent from './abstract-component.js';
 
-const createMenuTepmplate = () => {
+const createMenuTemplate = () => {
   return (
     `<section class="control__btn-wrap">
           <input
@@ -29,20 +30,8 @@ const createMenuTepmplate = () => {
   );
 };
 
-export default class Menu {
-  constructor() {
-    this._element = null;
-  }
+export default class Menu extends AbstractComponent {
   getTemplate() {
-    return createMenuTepmplate();
-  }
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-    return this._element;
-  }
-  removeElement() {
-    this._element = null;
+    return createMenuTemplate();
   }
 }
