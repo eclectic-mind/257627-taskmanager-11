@@ -12,3 +12,4 @@ export default class Button extends AbstractComponent {
   getTemplate() {
     return createLoadButton();
   }
+}
