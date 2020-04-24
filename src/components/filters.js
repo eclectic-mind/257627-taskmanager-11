@@ -16,7 +16,7 @@ const createFilterTemplate = (filter, isChecked) => {
   );
 };
 
-const createFiltersMarkup = (filters) => {
+/* const createFiltersMarkup = (filters) => {
   const filterMarkup = filters.map((item, i) => createFilterTemplate(item, i === 0)).join(`\n`);
   return (
     `<section class="main__filter filter container">
@@ -24,6 +24,7 @@ const createFiltersMarkup = (filters) => {
     </section>`
   );
 };
+*/
 
 /*
 export default class Filter {
