@@ -1,5 +1,4 @@
-import {TASK_COUNT, TASKS_COUNT_ON_START, TASKS_COUNT_BY_BUTTON} from './constants.js';
-import {formatTime} from './utils/common.js';
+import {TASK_COUNT} from './constants.js';
 import {generateFilters, countTasksByType} from './mock/filters.js';
 import {generateTask, generateTasks} from './mock/task.js';
 import {render, replace, remove, RenderPosition} from "./utils/render.js";
@@ -23,5 +22,6 @@ render(pageMain, new FilterComponent(filters), RenderPosition.BEFOREEND);
 
 const board = new BoardComponent();
 const boardController = new BoardController(board);
+
 render(pageMain, board, RenderPosition.BEFOREEND);
 boardController.render(tasks);

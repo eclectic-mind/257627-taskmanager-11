@@ -11,8 +11,7 @@ const renderTask = (taskListElement, task) => {
   const replaceTaskToForm = () => {
     replace(formComponent, taskComponent);
   };
-  const replaceFormToTask = (evt) => {
-    evt.preventDefault();
+  const replaceFormToTask = () => {
     replace(taskComponent, formComponent);
   };
 
