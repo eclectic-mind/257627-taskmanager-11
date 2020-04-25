@@ -5,7 +5,7 @@ import TasksComponent from "../components/tasks.js";
 import NoTasksComponent from "../components/no-tasks.js";
 import SortComponent from "../components/sort.js";
 import {render, remove, replace, RenderPosition} from "../utils/render.js";
-import {TASK_COUNT, TASKS_COUNT_ON_START, TASKS_COUNT_BY_BUTTON, SortType} from '../constants.js';
+import {TASKS_COUNT_ON_START, TASKS_COUNT_BY_BUTTON, SortType} from '../constants.js';
 
 const renderTask = (taskListElement, task) => {
   const replaceTaskToForm = () => {

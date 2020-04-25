@@ -1,6 +1,5 @@
 import {MENU_ADD, MENU_T, MENU_S} from '../constants.js';
 import AbstractComponent from './abstract-component.js';
-import {render, replace, remove, RenderPosition} from "../utils/render.js";
 
 const createMenuTemplate = () => {
   return (
