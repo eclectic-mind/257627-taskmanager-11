@@ -1,5 +1,5 @@
 import {COLORS, WEEK_DAYS, MONTH_NAMES} from '../constants.js';
-import {formatTime} from '../utils.js';
+import {formatTime} from '../utils/common.js';
 import AbstractComponent from './abstract-component.js';
 
 const createColorsMarkup = (colors, currentColor) => {
@@ -126,5 +126,9 @@ export default class Form extends AbstractComponent {
   }
   getTemplate() {
     return createFormTemplate(this._task);
+  }
+  setSubmitHandler(handler) {
+    this.getElement().querySelector(`form`)
+      .addEventListener(`submit`, handler);
   }
 }
