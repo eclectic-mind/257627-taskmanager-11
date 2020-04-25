@@ -8,6 +8,11 @@ DEFAULT: `SORT BY DEFAULT`,
 DATE_DOWN: `SORT BY DATE down`,
 DATE_UP: `SORT BY DATE up`
 };
+export const SortType = {
+  DATE_DOWN: `date-down`,
+  DATE_UP: `date-up`,
+  DEFAULT: `default`,
+};
 export const MENU_ADD = `+ ADD NEW TASK`;
 export const MENU_T = `TASKS`;
 export const MENU_S = `STATISTICS`;
