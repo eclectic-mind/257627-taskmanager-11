@@ -1,6 +1,6 @@
-import {COLORS, WEEK_DAYS, MONTH_NAMES} from '../constants.js';
-import {formatTime} from '../utils/common.js';
-import AbstractComponent from './abstract-component.js';
+import {COLORS, WEEK_DAYS,} from '../constants.js';
+import {formatTime, formatDate} from '../utils/common.js';
+import AbstractCompo, formatDatenent from './abstract-component.js';
 import AbstractSmartComponent from "./abstract-smart-component.js";
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
@@ -57,7 +57,7 @@ const createFormTemplate = (task, options = {}) => {
   const {isDateShowing, isRepeatingTask, activeRepeatingDays} = options;
   const isExpired = dueDate instanceof Date && dueDate < Date.now();
   const isBlockSaveButton = (isDateShowing && isRepeatingTask) || (isRepeatingTask && !isRepeating(activeRepeatingDays));
-  const date = (isDateShowing && dueDate) ? `${dueDate.getDate()} ${MONTH_NAMES[dueDate.getMonth()]}` : ``;
+  const date = (isDateShowing && dueDate) ? formatDate(dueDate) : ``;
   const time = (isDateShowing && dueDate) ? formatTime(dueDate) : ``;
   const repeatClass = isRepeatingTask ? `card--repeat` : ``;
   const deadlineClass = isExpired ? `card--deadline` : ``;

@@ -1,5 +1,4 @@
-import {MONTH_NAMES} from '../constants.js';
-import {formatTime} from '../utils/common.js';
+import {formatTime, formatDate} from '../utils/common.js';
 import AbstractComponent from './abstract-component.js';
 import AbstractSmartComponent from "./abstract-smart-component.js";
 
@@ -17,7 +16,7 @@ const createTaskTemplate = (task) => {
   const {description, dueDate, color, repeatingDays} = task;
   const isExpired = dueDate instanceof Date && dueDate < Date.now();
   const isDateShowing = !!dueDate;
-  const date = isDateShowing ? `${dueDate.getDate()} ${MONTH_NAMES[dueDate.getMonth()]}` : ``;
+  const date = isDateShowing ? formatDate(dueDate) : ``;
   const time = isDateShowing ? formatTime(dueDate) : ``;
   const editButton = createButtonMarkup(`edit`);
   const archiveButton = createButtonMarkup(`archive`, !task.isArchive);
