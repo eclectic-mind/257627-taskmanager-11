@@ -1,6 +1,6 @@
-import {COLORS, WEEK_DAYS,} from '../constants.js';
+import {COLORS, WEEK_DAYS} from '../constants.js';
 import {formatTime, formatDate} from '../utils/common.js';
-import AbstractCompo, formatDatenent from './abstract-component.js';
+import AbstractComponent from './abstract-component.js';
 import AbstractSmartComponent from "./abstract-smart-component.js";
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
