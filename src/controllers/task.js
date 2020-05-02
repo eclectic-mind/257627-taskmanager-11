@@ -58,7 +58,7 @@ export default class TaskController {
 
   setDefaultView() {
     if (this._mode !== Mode.DEFAULT) {
-      this._replaceEditToTask();
+      this._replaceFormToTask();
     }
   }
 
