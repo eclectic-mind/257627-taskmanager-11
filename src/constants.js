@@ -13,10 +13,25 @@ export const SortType = {
   DATE_UP: `date-up`,
   DEFAULT: `default`,
 };
+export const FilterType = {
+  ALL: `all`,
+  ARCHIVE: `archive`,
+  FAVORITES: `favorites`,
+  OVERDUE: `overdue`,
+  REPEATING: `repeating`,
+  TODAY: `today`,
+};
 export const MENU_ADD = `+ ADD NEW TASK`;
 export const MENU_T = `TASKS`;
 export const MENU_S = `STATISTICS`;
-export const COLORS = [`black`, `yellow`, `blue`, `green`, `pink`];
+export const COLOR = {
+  BLACK: `black`,
+  YELLOW: `yellow`,
+  BLUE: `blue`,
+  GREEN: `green`,
+  PINK: `pink`,
+};
+export const COLORS = Object.values(COLOR);
 export const WEEK_DAYS = [`mo`, `tu`, `we`, `th`, `fr`, `sa`, `su`];
 export const MONTH_NAMES = [
   `January`,

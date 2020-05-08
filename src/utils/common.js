@@ -30,3 +30,17 @@ export const formatTime = (date) => {
 export const formatDate = (date) => {
   return moment(date).format(`DD MMMM`);
 };
+
+export const isRepeating = (repeatingDays) => {
+  return Object.values(repeatingDays).some(Boolean);
+};
+
+export const isOverdueDate = (dueDate, date) => {
+  return dueDate < date && !isSameDay(date, dueDate);
+};
+
+export const isSameDay = (dateOne, dateTwo) => {
+  const a = moment(dateOne);
+  const b = moment(dateTwo);
+  return a.diff(b, `days`) === 0 && dateOne.getDate() === dateTwo.getDate();
+};

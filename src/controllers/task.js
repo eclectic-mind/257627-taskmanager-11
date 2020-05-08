@@ -1,10 +1,29 @@
 import TaskComponent from "../components/task.js";
 import FormComponent from "../components/form.js";
-import {render, replace, RenderPosition} from "../utils/render.js";
+import {render, replace, remove, RenderPosition} from "../utils/render.js";
+import {COLOR} from "../constants.js";
 
-const Mode = {
+export const Mode = {
+  ADDING: `adding`,
   DEFAULT: `default`,
   EDIT: `edit`,
+};
+
+export const EmptyTask = {
+  description: ``,
+  dueDate: null,
+  repeatingDays: {
+    "mo": false,
+    "tu": false,
+    "we": false,
+    "th": false,
+    "fr": false,
+    "sa": false,
+    "su": false,
+  },
+  color: COLOR.BLACK,
+  isFavorite: false,
+  isArchive: false,
 };
 
 export default class TaskController {
@@ -18,9 +37,11 @@ export default class TaskController {
     this._onEscKeyDown = this._onEscKeyDown.bind(this);
   }
 
-  render(task) {
+  render(task, mode) {
     const oldTaskComponent = this._taskComponent;
     const oldFormComponent = this._formComponent;
+    this._mode = mode;
+
     this._taskComponent = new TaskComponent(task);
     this._formComponent = new FormComponent(task);
 
@@ -43,16 +64,30 @@ export default class TaskController {
 
     this._formComponent.setSubmitHandler((evt) => {
       evt.preventDefault();
-      this._replaceFormToTask();
+      const data = this._formComponent.getData();
+      this._onDataChange(this, task, data);
     });
 
-    render(this._container, this._taskComponent, RenderPosition.BEFOREEND);
+    this._formComponent.setDeleteButtonClickHandler(() => this._onDataChange(this, task, null));
 
-    if (oldFormComponent && oldTaskComponent) {
-      replace(this._taskComponent, oldTaskComponent);
-      replace(this._formComponent, oldFormComponent);
-    } else {
-      render(this._container, this._taskComponent, RenderPosition.BEFOREEND);
+    switch (mode) {
+      case Mode.DEFAULT:
+        if (oldFormComponent && oldTaskComponent) {
+          replace(this._taskComponent, oldTaskComponent);
+          replace(this._formComponent, oldFormComponent);
+          this._replaceFormToTask();
+        } else {
+          render(this._container, this._taskComponent, RenderPosition.BEFOREEND);
+        }
+        break;
+      case Mode.ADDING:
+        if (oldFormComponent && oldTaskComponent) {
+          remove(oldTaskComponent);
+          remove(oldFormComponent);
+        }
+        document.addEventListener(`keydown`, this._onEscKeyDown);
+        render(this._container, this._formComponent, RenderPosition.AFTERBEGIN);
+        break;
     }
   }
 
@@ -62,10 +97,18 @@ export default class TaskController {
     }
   }
 
+  destroy() {
+    remove(this._formComponent);
+    remove(this._taskComponent);
+    document.removeEventListener(`keydown`, this._onEscKeyDown);
+  }
+
   _replaceFormToTask() {
     document.removeEventListener(`keydown`, this._onEscKeyDown);
     this._formComponent.reset();
-    replace(this._taskComponent, this._formComponent);
+    if (document.contains(this._formComponent.getElement())) {
+      replace(this._taskComponent, this._formComponent);
+    }
     this._mode = Mode.DEFAULT;
   }
 
@@ -79,6 +122,9 @@ export default class TaskController {
     const isEscKey = evt.key === `Escape` || evt.key === `Esc`;
 
     if (isEscKey) {
+      if (this._mode === Mode.ADDING) {
+        this._onDataChange(this, EmptyTask, null);
+      }
       this._replaceFormToTask();
       document.removeEventListener(`keydown`, this._onEscKeyDown);
     }
