@@ -34,5 +34,6 @@ export const replace = (newComponent, oldComponent) => {
 };
 
 export const remove = (element) => {
-  element.remove();
+  element.getElement().remove();
+  element.removeElement();
 };

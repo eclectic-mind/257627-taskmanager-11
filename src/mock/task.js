@@ -15,6 +15,7 @@ export const generateTask = (days) => {
   const dueDate = Math.random() > 0.5 ? null : getRandomDate();
 
   return {
+    id: String(new Date() + Math.random()),
     description: getRandomArrayItem(DESCR_ITEMS),
     dueDate,
     repeatingDays: dueDate ? days : generateRepeatingDays(),
