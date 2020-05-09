@@ -61,8 +61,7 @@ const createFormTemplate = (task, options = {}) => {
   const {isDateShowing, isRepeatingTask, activeRepeatingDays, currentDescription} = options;
   const description = encode(currentDescription);
   const isExpired = dueDate instanceof Date && isOverdueDate(dueDate, new Date());
-  const isBlockSaveButton = (isDateShowing && isRepeatingTask) || (isRepeatingTask && !isRepeating(activeRepeatingDays));
-    (isRepeatingTask && !isRepeating(activeRepeatingDays)) || !isAllowableDescriptionLength(description);
+  const isBlockSaveButton = (isDateShowing && isRepeatingTask) || (isRepeatingTask && !isRepeating(activeRepeatingDays)) || !isAllowableDescriptionLength(description);
   const date = (isDateShowing && dueDate) ? formatDate(dueDate) : ``;
   const time = (isDateShowing && dueDate) ? formatTime(dueDate) : ``;
   const repeatClass = isRepeatingTask ? `card--repeat` : ``;
@@ -243,7 +242,7 @@ export default class Form extends AbstractSmartComponent {
         this._currentDescription = evt.target.value;
         const saveButton = this.getElement().querySelector(`.card__save`);
         saveButton.disabled = !isAllowableDescriptionLength(this._currentDescription);
-    });
+      });
 
     element.querySelector(`.card__date-deadline-toggle`).addEventListener(`click`, () => {
       this._isDateShowing = !this._isDateShowing;

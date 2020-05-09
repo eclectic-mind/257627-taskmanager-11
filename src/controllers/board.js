@@ -124,7 +124,7 @@ export default class BoardController {
         this._tasksModel.addTask(newData);
         taskController.render(newData, TaskControllerMode.DEFAULT);
 
-        if (this._showingTasksCount % STASKS_COUNT_BY_BUTTON === 0) {
+        if (this._showingTasksCount % TASKS_COUNT_BY_BUTTON === 0) {
           const destroyedTask = this._showedTaskControllers.pop();
           destroyedTask.destroy();
         }

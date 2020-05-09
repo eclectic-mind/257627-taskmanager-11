@@ -3,7 +3,7 @@ import {FilterType} from "../constants.js";
 
 export default class Tasks {
   constructor() {
-    this._tasks = [],
+    this._tasks = [];
     this._activeFilterType = FilterType.ALL;
     this._dataChangeHandlers = [];
     this._filterChangeHandlers = [];
@@ -27,7 +27,7 @@ export default class Tasks {
   }
 
   removeTask(id) {
-    const index = this._tasks.findIndex((it) => it.id === id);
+    const index = this._tasks.findIndex((item) => item.id === id);
 
     if (index === -1) {
       return false;
@@ -40,7 +40,7 @@ export default class Tasks {
   }
 
   updateOneTask(id, newTask) {
-    const index = this._tasks.findIndex(item => item.id === id);
+    const index = this._tasks.findIndex((item) => item.id === id);
     // index === -1 ? false : true;
     if (index === -1) {
       return false;
@@ -74,6 +74,6 @@ export default class Tasks {
   }
 
   _callHandlers(handlers) {
-    handlers.forEach(handler => handler());
+    handlers.forEach((handler) => handler());
   }
 }
