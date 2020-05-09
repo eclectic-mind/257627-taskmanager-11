@@ -133,7 +133,7 @@ const createFormTemplate = (task, options = {}) => {
 };
 
 const parseFormData = (formData) => {
-  const repeatingDays = DAYS.reduce((acc, day) => {
+  const repeatingDays = WEEK_DAYS.reduce((acc, day) => {
     acc[day] = false;
     return acc;
   }, {});
@@ -227,6 +227,12 @@ export default class Form extends AbstractSmartComponent {
   setSubmitHandler(handler) {
     this.getElement().querySelector(`form`).addEventListener(`submit`, handler);
     this._submitHandler = handler;
+  }
+
+  setDeleteButtonClickHandler(handler) {
+    this.getElement().querySelector(`.card__delete`)
+      .addEventListener(`click`, handler);
+    this._deleteButtonClickHandler = handler;
   }
 
   _subscribeOnEvents() {
