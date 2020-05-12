@@ -2,7 +2,7 @@ import TaskComponent from "../components/task.js";
 import FormComponent from "../components/form.js";
 import TaskModel from "../models/task.js";
 import {render, replace, remove, RenderPosition} from "../utils/render.js";
-import {COLOR, WEEK_DAYS} from "../constants.js";
+import {COLOR, WEEK_DAYS, SHAKE_TIMEOUT} from "../constants.js";
 
 export const Mode = {
   ADDING: `adding`,
@@ -87,10 +87,18 @@ export default class TaskController {
       evt.preventDefault();
       const formData = this._formComponent.getData();
       const data = parseFormData(formData);
+      this._forCmomponent.setData({
+        saveButtonText: `Saving...`,
+      });
       this._onDataChange(this, task, data);
     });
 
-    this._formComponent.setDeleteButtonClickHandler(() => this._onDataChange(this, task, null));
+    this._formComponent.setDeleteButtonClickHandler(() => {
+      this._formComponent.setData({
+        deleteButtonText: `Deleting...`,
+      });
+      this._onDataChange(this, task, null);
+    });
 
     switch (mode) {
       case Mode.DEFAULT:
@@ -138,6 +146,20 @@ export default class TaskController {
     this._onViewChange();
     replace(this._formComponent, this._taskComponent);
     this._mode = Mode.EDIT;
+  }
+
+  shake() {
+    this._formComponent.getElement().style.animation = `shake ${SHAKE_TIMEOUT / 1000}s`;
+    this._taskComponent.getElement().style.animation = `shake ${SHAKE_TIMEOUT / 1000}s`;
+
+    setTimeout(() => {
+      this._formComponent.getElement().style.animation = ``;
+      this._taskComponent.getElement().style.animation = ``;
+      this._taskEditComponent.setData({
+        saveButtonText: `Save`,
+        deleteButtonText: `Delete`,
+      });
+    }, SHAKE_TIMEOUT);
   }
 
   _onEscKeyDown(evt) {
