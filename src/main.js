@@ -1,6 +1,7 @@
-import {TASK_COUNT} from './constants.js';
-import {generateFilters, countTasksByType} from './mock/filters.js';
-import {generateTask, generateTasks} from './mock/task.js';
+import API from "./api.js";
+// import {TASK_COUNT} from './constants.js';
+// import {generateFilters, countTasksByType} from './mock/filters.js';
+// import {generateTask, generateTasks} from './mock/task.js';
 import {render, replace, remove, RenderPosition} from "./utils/render.js";
 
 import TasksModel from "./models/tasks.js";
@@ -16,6 +17,8 @@ import StatsComponent from "./components/stats.js";
 // const menuComponent = new MenuComponent();
 // render(menuContainer, menuComponent, RenderPosition.BEFOREEND);
 
+const AUTHORIZATION = `Basic skjfglkdlekKJhLfloKLF=`;
+
 const dateTo = new Date();
 const dateFrom = (() => {
   const d = new Date(dateTo);
@@ -23,9 +26,10 @@ const dateFrom = (() => {
   return d;
 })();
 
-const tasks = generateTasks(TASK_COUNT);
+// const tasks = generateTasks(TASK_COUNT);
+const api = new API(AUTHORIZATION);
 const tasksModel = new TasksModel();
-tasksModel.setTasks(tasks);
+// tasksModel.setTasks(tasks);
 
 const pageMain = document.querySelector(`main`);
 const menuContainer = pageMain.querySelector(`.main__control`);
@@ -52,7 +56,7 @@ const filterController = new FilterController(pageMain, tasksModel);
 render(menuContainer, new MenuComponent(), RenderPosition.BEFOREEND);
 filterController.render();
 render(pageMain, board, RenderPosition.BEFOREEND);
-boardController.render();
+// boardController.render();
 render(pageMain, statsComponent, RenderPosition.BEFOREEND);
 statsComponent.hide();
 
@@ -73,4 +77,10 @@ menuComponent.setOnChange((menuItem) => {
       boardController.show();
       break;
   }
+});
+
+api.getTasks()
+  .then((tasks) => {
+    tasksModel.setTasks(tasks);
+    boardController.render();
 });
