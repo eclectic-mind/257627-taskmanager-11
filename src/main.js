@@ -18,6 +18,7 @@ import StatsComponent from "./components/stats.js";
 // render(menuContainer, menuComponent, RenderPosition.BEFOREEND);
 
 const AUTHORIZATION = `Basic skjfglkdlekKJhLfloKLF=`;
+const END_POINT = `https://11.ecmascript.pages.academy/task-manager`;
 
 const dateTo = new Date();
 const dateFrom = (() => {
@@ -27,7 +28,7 @@ const dateFrom = (() => {
 })();
 
 // const tasks = generateTasks(TASK_COUNT);
-const api = new API(AUTHORIZATION);
+const api = new API(END_POINT, AUTHORIZATION);
 const tasksModel = new TasksModel();
 // tasksModel.setTasks(tasks);
 
@@ -49,7 +50,7 @@ const statsComponent = new StatsComponent({tasks: tasksModel, dateFrom, dateTo})
 
 const board = new BoardComponent();
 // render(pageMain, board, RenderPosition.BEFOREEND);
-const boardController = new BoardController(board, tasksModel);
+const boardController = new BoardController(board, tasksModel, api);
 // boardController.render();
 const filterController = new FilterController(pageMain, tasksModel);
 
