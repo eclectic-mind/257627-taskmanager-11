@@ -1,5 +1,5 @@
 import AbstractSmartComponent from "./abstract-smart-component.js";
-import {isOneDay} from "../utils/common.js";
+import {isSameDay} from "../utils/common.js";
 import Chart from "chart.js";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import moment from "moment";
@@ -116,7 +116,7 @@ const renderDaysChart = (daysCtx, tasks, dateFrom, dateTo) => {
 
   const taskCountOnDay = days.map((date) => {
     return tasks.filter((task) => {
-      return isOneDay(task.dueDate, date);
+      return isSameDay(task.dueDate, date);
     }).length;
   });
 

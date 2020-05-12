@@ -53,7 +53,7 @@ render(menuContainer, new MenuComponent(), RenderPosition.BEFOREEND);
 filterController.render();
 render(pageMain, board, RenderPosition.BEFOREEND);
 boardController.render();
-render(pageMainE, statsComponent, RenderPosition.BEFOREEND);
+render(pageMain, statsComponent, RenderPosition.BEFOREEND);
 statsComponent.hide();
 
 menuComponent.setOnChange((menuItem) => {
