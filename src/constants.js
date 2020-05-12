@@ -48,3 +48,7 @@ export const MONTH_NAMES = [
   `December`,
 ];
 export const DESCR_ITEMS = [`Изучить теорию`, `Сделать домашку`, `Пройти интенсив на соточку`];
+export const DESCRIPTION_MIN = 1;
+export const DESCRIPTION_MAX = 140;
+export const SHAKE_TIMEOUT = 600;
+export const HIDDEN_CLASS = `visually-hidden`;

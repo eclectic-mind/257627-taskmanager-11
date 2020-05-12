@@ -1,12 +1,14 @@
-import {COLORS, WEEK_DAYS} from '../constants.js';
+import {COLORS, WEEK_DAYS, DESCRIPTION_MIN, DESCRIPTION_MAX} from '../constants.js';
 import {formatTime, formatDate, isRepeating, isOverdueDate} from '../utils/common.js';
 import AbstractSmartComponent from "./abstract-smart-component.js";
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 import {encode} from "he";
 
-const DESCRIPTION_MIN = 1;
-const DESCRIPTION_MAX = 140;
+const DefaultData = {
+  deleteButtonText: `Delete`,
+  saveButtonText: `Save`,
+};
 
 const isAllowableDescriptionLength = (description) => {
   const length = description.length;
@@ -58,7 +60,7 @@ const createRepeatingDaysMarkup = (days, repeatingDays) => {
 
 const createFormTemplate = (task, options = {}) => {
   const {dueDate, color} = task;
-  const {isDateShowing, isRepeatingTask, activeRepeatingDays, currentDescription} = options;
+  const {isDateShowing, isRepeatingTask, activeRepeatingDays, currentDescription, externalData} = options;
   const description = encode(currentDescription);
   const isExpired = dueDate instanceof Date && isOverdueDate(dueDate, new Date());
   const isBlockSaveButton = (isDateShowing && isRepeatingTask) || (isRepeatingTask && !isRepeating(activeRepeatingDays));
@@ -67,6 +69,8 @@ const createFormTemplate = (task, options = {}) => {
   const time = (isDateShowing && dueDate) ? formatTime(dueDate) : ``;
   const repeatClass = isRepeatingTask ? `card--repeat` : ``;
   const deadlineClass = isExpired ? `card--deadline` : ``;
+  const deleteButtonText = externalData.deleteButtonText;
+  const saveButtonText = externalData.saveButtonText;
   const colorsMarkup = createColorsMarkup(COLORS, color);
   const repeatingDaysMarkup = createRepeatingDaysMarkup(WEEK_DAYS, activeRepeatingDays);
 
@@ -123,31 +127,13 @@ const createFormTemplate = (task, options = {}) => {
             </div>
           </div>
           <div class="card__status-btns">
-            <button class="card__save" type="submit" ${isBlockSaveButton ? `disabled` : ``}>save</button>
-            <button class="card__delete" type="button">delete</button>
-          </div>
+            <button class="card__save" type="submit" ${isBlockSaveButton ? `disabled` : ``}>${saveButtonText}</button>
+            <button class="card__delete" type="button">${deleteButtonText}</button>
+            </div>
         </div>
       </form>
     </article>`
   );
-};
-
-const parseFormData = (formData) => {
-  const repeatingDays = WEEK_DAYS.reduce((acc, day) => {
-    acc[day] = false;
-    return acc;
-  }, {});
-  const date = formData.get(`date`);
-
-  return {
-    description: formData.get(`text`),
-    color: formData.get(`color`),
-    dueDate: date ? new Date(date) : null,
-    repeatingDays: formData.getAll(`repeat`).reduce((acc, item) => {
-      acc[item] = true;
-      return acc;
-    }, repeatingDays),
-  };
 };
 
 export default class Form extends AbstractSmartComponent {
@@ -156,6 +142,7 @@ export default class Form extends AbstractSmartComponent {
     this._task = task;
     this._isDateShowing = !!task.dueDate;
     this._isRepeatingTask = Object.values(task.repeatingDays).some(Boolean);
+    this._externalData = DefaultData;
     this._flatpickr = null;
     this._activeRepeatingDays = Object.assign({}, task.repeatingDays);
     this._currentDescription = task.description;
@@ -167,6 +154,7 @@ export default class Form extends AbstractSmartComponent {
 
   getTemplate() {
     return createFormTemplate(this._task, {
+      externalData: this._externalData,
       isDateShowing: this._isDateShowing,
       isRepeatingTask: this._isRepeatingTask,
       activeRepeatingDays: this._activeRepeatingDays,
@@ -220,8 +208,12 @@ export default class Form extends AbstractSmartComponent {
 
   getData() {
     const form = this.getElement().querySelector(`.card__form`);
-    const formData = new FormData(form);
-    return parseFormData(formData);
+    return new FormData(form);
+  }
+
+  setData(data) {
+    this._externalData = Object.assign({}, DefaultData, data);
+    this.rerender();
   }
 
   setSubmitHandler(handler) {
