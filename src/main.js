@@ -1,21 +1,11 @@
 import API from "./api.js";
-// import {TASK_COUNT} from './constants.js';
-// import {generateFilters, countTasksByType} from './mock/filters.js';
-// import {generateTask, generateTasks} from './mock/task.js';
 import {render, replace, remove, RenderPosition} from "./utils/render.js";
-
 import TasksModel from "./models/tasks.js";
-
 import BoardComponent from "./components/board.js";
 import BoardController from "./controllers/board.js";
 import FilterController from "./controllers/filter.js";
 import MenuComponent, {MenuItem} from "./components/menu.js";
 import StatsComponent from "./components/stats.js";
-
-// const pageMain = document.querySelector(`main`);
-// const menuContainer = pageMain.querySelector(`.main__control`);
-// const menuComponent = new MenuComponent();
-// render(menuContainer, menuComponent, RenderPosition.BEFOREEND);
 
 const AUTHORIZATION = `Basic skjfglkdlekKJhLfloKLF=`;
 const END_POINT = `https://11.ecmascript.pages.academy/task-manager`;
@@ -27,37 +17,21 @@ const dateFrom = (() => {
   return d;
 })();
 
-// const tasks = generateTasks(TASK_COUNT);
 const api = new API(END_POINT, AUTHORIZATION);
 const tasksModel = new TasksModel();
-// tasksModel.setTasks(tasks);
 
 const pageMain = document.querySelector(`main`);
 const menuContainer = pageMain.querySelector(`.main__control`);
 const menuComponent = new MenuComponent();
 const statsComponent = new StatsComponent({tasks: tasksModel, dateFrom, dateTo});
 
-// const filters = generateFilters(tasks);
-
-// const menu = new MenuComponent();
-// const filtersComponent = new FilterComponent(filters);
-
-// render(menuContainer, new MenuComponent(), RenderPosition.BEFOREEND);
-// render(pageMain, new FilterComponent(filters), RenderPosition.BEFOREEND);
-
-// const filterController = new FilterController(pageMain, tasksModel);
-// filterController.render();
-
 const board = new BoardComponent();
-// render(pageMain, board, RenderPosition.BEFOREEND);
 const boardController = new BoardController(board, tasksModel, api);
-// boardController.render();
 const filterController = new FilterController(pageMain, tasksModel);
 
 render(menuContainer, new MenuComponent(), RenderPosition.BEFOREEND);
 filterController.render();
 render(pageMain, board, RenderPosition.BEFOREEND);
-// boardController.render();
 render(pageMain, statsComponent, RenderPosition.BEFOREEND);
 statsComponent.hide();
 
