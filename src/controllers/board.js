@@ -159,7 +159,7 @@ export default class BoardController {
           taskController.shake();
         });
     } else {
-      this._api.updateOneTask(oldData.id, newData)
+      this._api.updateTask(oldData.id, newData)
         .then((taskModel) => {
           const isSuccess = this._tasksModel.updateOneTask(oldData.id, taskModel);
 
