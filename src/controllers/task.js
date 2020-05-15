@@ -87,7 +87,7 @@ export default class TaskController {
       evt.preventDefault();
       const formData = this._formComponent.getData();
       const data = parseFormData(formData);
-      this._forCmomponent.setData({
+      this._formComponent.setData({
         saveButtonText: `Saving...`,
       });
       this._onDataChange(this, task, data);
@@ -155,7 +155,7 @@ export default class TaskController {
     setTimeout(() => {
       this._formComponent.getElement().style.animation = ``;
       this._taskComponent.getElement().style.animation = ``;
-      this._taskEditComponent.setData({
+      this._formComponent.setData({
         saveButtonText: `Save`,
         deleteButtonText: `Delete`,
       });
