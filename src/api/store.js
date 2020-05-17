@@ -23,7 +23,7 @@ export default class Store {
         this._storeKey,
         JSON.stringify(
             Object.assign({}, store, {
-            [key]: value
+              [key]: value
             })
         )
     );
