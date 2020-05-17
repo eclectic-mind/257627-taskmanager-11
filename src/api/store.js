@@ -20,11 +20,11 @@ export default class Store {
     const store = this.getItems();
 
     this._storage.setItem(
-      this._storeKey,
+        this._storeKey,
         JSON.stringify(
-          Object.assign({}, store, {
+            Object.assign({}, store, {
             [key]: value
-          })
+            })
         )
     );
   }
