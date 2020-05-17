@@ -27,10 +27,10 @@ export default class Provider {
   getTasks() {
     if (isOnline()) {
       return this._api.getTasks().then((tasks) => {
-          const items = createStoreStructure(tasks.map((task) => task.toRaw()));
-          this._store.setItems(items);
-          return tasks;
-        });
+        const items = createStoreStructure(tasks.map((task) => task.toRaw()));
+        this._store.setItems(items);
+        return tasks;
+      });
     }
     const storeTasks = Object.values(this._store.getItems());
     return Promise.resolve(Task.parseTasks(storeTasks));
@@ -39,9 +39,9 @@ export default class Provider {
   createTask(task) {
     if (isOnline()) {
       return this._api.createTask(task).then((newTask) => {
-          this._store.setItem(newTask.id, newTask.toRaw());
-          return newTask;
-        });
+        this._store.setItem(newTask.id, newTask.toRaw());
+        return newTask;
+      });
     }
     const localNewTaskId = nanoid();
     const localNewTask = Task.clone(Object.assign(task, {id: localNewTaskId}));
@@ -52,9 +52,9 @@ export default class Provider {
   updateTask(id, task) {
     if (isOnline()) {
       return this._api.updateTask(id, task).then((newTask) => {
-          this._store.setItem(newTask.id, newTask.toRaw());
-          return newTask;
-        });
+        this._store.setItem(newTask.id, newTask.toRaw());
+        return newTask;
+      });
     }
     const localTask = Task.clone(Object.assign(task, {id}));
     this._store.setItem(id, localTask.toRaw());
@@ -80,7 +80,7 @@ export default class Provider {
           const items = createStoreStructure([...createdTasks, ...updatedTasks]);
           this._store.setItems(items);
         });
-      }
+    }
 
     return Promise.reject(new Error(`Sync data failed`));
   }
